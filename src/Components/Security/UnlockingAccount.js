@@ -47,7 +47,7 @@ const resultUnlock = {
 class UnlockingAcount extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: '',  };
+    this.state = { username: '', BuildTable: this.BuildTable, Data: result.Data };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -82,7 +82,7 @@ class UnlockingAcount extends React.Component {
           <legend style={{
             width: "10%"
           }}>User Status</legend>
-            <SecurityTable UserName={"beekip"} Name={"Pacheco, Isabel(beek)"} Locked={"Yes"}/>
+            <SecurityTable Result = {this.state}/>
         </fieldset>
 
       </Container>
@@ -133,7 +133,7 @@ class UnlockingAcount extends React.Component {
       })
       .then(res => res.json())
       .then((response) => {
-        this.setState({isLoaded: true, result: result});
+        this.setState({isLoaded: true, Data: result.Data});
         if(this.state.result.HasError){
           return;
         }
@@ -148,7 +148,7 @@ class UnlockingAcount extends React.Component {
   }
 
   BuildTable(isBlocked){
-
+console.log( 'Esta es la funcion BuildTable del padre'+ isBlocked);
   }
 
 }
