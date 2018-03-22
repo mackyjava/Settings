@@ -1,0 +1,31 @@
+img{
+  width:250px;
+  height:65px;
+  margin-top:76px;
+}
+.card{
+  border: thin transparent !important;
+}
+
+.card:hover{
+  border: 2px solid #3B9AF8 !important;
+}
+.fa-usd{
+  margin-left:20px;
+}
+
+.fa-line-chart{
+  margin-left: -10px;
+}
+
+.btn{
+  width:auto;
+  color: black !important;
+  background-color:white !important;
+  position: absolute;
+  margin-top: .7%;
+}
+#p_wrap {
+    white-space: pre-line;
+    margin-top:41px;
+  }
