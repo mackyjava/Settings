@@ -10,7 +10,8 @@ let thStyle ={
 class SecurityTable extends React.Component{
     constructor(props){
         super(props);
-    
+        console.log(this.props.Result);
+        this.props.Result.BuildTable(true);
     }
     render(){
         return(
