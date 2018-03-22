@@ -11,7 +11,7 @@ import {
   Button,
   Alert
 } from 'reactstrap';
-
+import SecurityTable from './SecurityTable.js';
 
 const result = {
   Data: JSON.stringify({
@@ -52,7 +52,6 @@ class UnlockingAcount extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
- 
   render() {
     return (
       <Container fluid>
@@ -83,7 +82,9 @@ class UnlockingAcount extends React.Component {
           <legend style={{
             width: "10%"
           }}>User Status</legend>
+            <SecurityTable UserName={"beekip"} Name={"Pacheco, Isabel(beek)"} Locked={"Yes"}/>
         </fieldset>
+
       </Container>
     );
   }
