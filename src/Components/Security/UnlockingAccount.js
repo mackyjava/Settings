@@ -48,7 +48,9 @@ const resultUnlock = {
 class UnlockingAcount extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = { username: '', UnlockSuccess: this.UnlockSuccess, Data: '' };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
