@@ -11,8 +11,11 @@ let thStyle ={
 class SecurityTable extends React.Component{
     constructor(props){
         super(props);
-   
-   
+        
+        this.state = {
+          error: null,
+          isLoaded: false
+        };
 
         console.log(this.props.Result);
 
@@ -49,7 +52,7 @@ class SecurityTable extends React.Component{
                             <td  scope="row">{propiedades.username}</td>
                             <td>{propiedades.name}</td>
                             <td>{propiedades.lock}</td>
-                            <td><Fontawesome name={propiedades.iconname}size='2x'/></td>
+                            <td><Fontawesome name={propiedades.iconname}size='2x' style={{color:"#6D6D6D"}}/></td>
                           </tr>
                         </tbody>
                       </Table>
@@ -76,7 +79,7 @@ class SecurityTable extends React.Component{
                        <td  scope="row">{propiedades.username}</td>
                        <td>{propiedades.name}</td>
                        <td>{propiedades.lock}</td>
-                       <td><Button style={{marginTop:"-12px",border:"none"}}><Fontawesome name={propiedades.iconname}size='2x'/></Button></td>
+                       <td><Button style={{marginTop:"-12px",border:"none"}} onClick={()=> {this.UnlockAction(propiedades.username)}}><Fontawesome name={propiedades.iconname}size='2x'/></Button></td>
                      </tr>
                    </tbody>
                  </Table>
@@ -86,5 +89,36 @@ class SecurityTable extends React.Component{
         }    
         
         }
+        
+        UnlockAction(UserName){
+          
+          console.log(UserName);
+          this.props.Result.UnlockSuccess(false);
+          fetch('/Security/UnlockingAccount.aspx/UnlockingUser', {
+            method:'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },//make sure to serialize your JSON body
+            body: JSON.stringify({ username: UserName })
+          })
+          .then(res => res.json())
+          .then((result)=>{
+            this.setState({isLoaded : true })
+            if(result.d.HasError){
+              return;
+            }
+            else{
+              this.props.Result.UnlockSuccess(false);
+            }
+          },
+          (error)=>{
+            this.setState({
+
+            })
+          }
+        )
+        
+      }
 }
 export default SecurityTable

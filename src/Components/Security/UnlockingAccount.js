@@ -15,7 +15,7 @@ import SecurityTable from './SecurityTable.js';
 
 const result = {
   Data: JSON.stringify({
-    IsAccountLocked: false,
+    IsAccountLocked: true,
     DaysToPasswordExpiration: 0,
     ID: 4096,
     UserName: 'beekip',
