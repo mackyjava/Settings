@@ -13,8 +13,9 @@ class SecurityTable extends React.Component{
         super(props);
    
    
-        this.props.Result.BuildTable(true);
-        
+
+        console.log(this.props.Result);
+
     }
     
     render(){
@@ -85,6 +86,5 @@ class SecurityTable extends React.Component{
         }    
         
         }
-  
 }
 export default SecurityTable
