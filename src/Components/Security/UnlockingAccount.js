@@ -44,10 +44,11 @@ const resultUnlock = {
   Message: null
 };
 
+
 class UnlockingAcount extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: '', BuildTable: this.BuildTable, Data: result.Data };
+    this.state = { username: '', UnlockSuccess: this.UnlockSuccess, Data: '' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -82,7 +83,7 @@ class UnlockingAcount extends React.Component {
           <legend style={{
             width: "10%"
           }}>User Status</legend>
-            <SecurityTable Result = {this.state}/>
+              <SecurityTable Result = {this.state}/>
         </fieldset>
 
       </Container>
@@ -120,9 +121,10 @@ class UnlockingAcount extends React.Component {
     if (!this.state.username.length) {
       return;
     }
-    
+
     console.log(this.state.username);
     console.log('constante declarada' + JSON.stringify(result));
+    this.state.Data = result.Data;
     fetch("/Security/UnlockingAccount.aspx/SearchUserByNameUser", {
       method: "post",
       headers: {
@@ -144,12 +146,15 @@ class UnlockingAcount extends React.Component {
     
     this.setState(prevState => ({
       username: ''
-    }));
+    }));    
   }
 
-  BuildTable(isBlocked){
-console.log( 'Esta es la funcion BuildTable del padre'+ isBlocked);
-  }
+  UnlockSuccess(isBlocked){
+    console.log(isBlocked);
+      let data = JSON.parse(this.Data);
+      data.IsAccountLocked = isBlocked;
+      this.Data = JSON.stringify(data);
+    }
 
 }
 export default UnlockingAcount
