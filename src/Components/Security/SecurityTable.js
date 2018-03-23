@@ -11,7 +11,7 @@ class SecurityTable extends React.Component{
     constructor(props){
         super(props);
         console.log(this.props.Result);
-        this.props.Result.BuildTable(true);
+        
     }
     render(){
         return(
@@ -29,7 +29,7 @@ class SecurityTable extends React.Component{
               </thead>
               <tbody>
                 <tr style={{ border:"1px solid blacK"}} className={"text-center"}>
-                  <td  scope="row">{this.props.UserName}</td>
+                  <td  scope="row"></td>
                   <td>{this.props.Name}</td>
                   <td>{this.props.Locked}</td>
                   <td><Fontawesome name={this.props.Name} size='2x'/>
