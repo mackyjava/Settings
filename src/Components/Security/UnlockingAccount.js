@@ -13,37 +13,6 @@ import {
 } from 'reactstrap';
 import SecurityTable from './SecurityTable.js';
 
-const result = {
-  Data: JSON.stringify({
-    IsAccountLocked: true,
-    DaysToPasswordExpiration: 0,
-    ID: 4096,
-    UserName: 'beekip',
-    DisplayName: 'Pacheco Isabel',
-    EMail: 'isabelp@beek.com.mx',
-    FirstName: null,
-    LastName: null,
-    IsOperationallyOnLine: true,
-    CurrentClubPrivileges: [],
-    UserClubs: [],
-    IsAdmin: false,
-    Token: null,
-    ShowChangePassword: false,
-    CanPostponeChangePassword: false,
-    HasError: false,
-    HasWarning: false
-    }),
-  HasError: false,
-  IsLogOutRequired: false,
-  Message: null
-};
-const resultUnlock = {
-  Data: '',
-  HasError: false,
-  IsLogOutRequired: false,
-  Message: null
-};
-
 
 class UnlockingAcount extends React.Component {
   constructor(props) {
@@ -92,28 +61,6 @@ class UnlockingAcount extends React.Component {
     );
   }
 
-  UnlockAccount() {
-    fetch("/Security/UnlockingAccount.aspx/UnlockingUser", {
-      method: "post",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }, //make sure to serialize your JSON body
-        body: JSON.stringify({username: this.state.username})
-      })
-      .then(res => res.json())
-      .then((response) => {
-        this.setState({isLoaded: true});
-        this.setProps({resultUnlock: resultUnlock});
-      }, (error) => {
-        this.setState({isLoaded: true, error});
-      })
-  }
-
-  SearchUser(){
-    
-  }
-
   handleChange(e) {
     this.setState({ username: e.target.value });
   }
@@ -124,9 +71,6 @@ class UnlockingAcount extends React.Component {
       return;
     }
 
-    console.log(this.state.username);
-    console.log('constante declarada' + JSON.stringify(result));
-    this.state.Data = result.Data;
     fetch("/Security/UnlockingAccount.aspx/SearchUserByNameUser", {
       method: "post",
       headers: {
@@ -137,11 +81,10 @@ class UnlockingAcount extends React.Component {
       })
       .then(res => res.json())
       .then((response) => {
-        this.setState({isLoaded: true, Data: result.Data});
-        if(this.state.result.HasError){
+        if(response.d.HasError){
           return;
         }
-        console.log(JSON.stringify('This.State.Result: '+ JSON.stringify(this.state.result)));
+        this.setState({isLoaded: true, Data: response.d.Data});
       }, (error) => {
         this.setState({isLoaded: true, error});
       })
@@ -152,7 +95,6 @@ class UnlockingAcount extends React.Component {
   }
 
   UnlockSuccess(isBlocked){
-    console.log(isBlocked);
       let data = JSON.parse(this.Data);
       data.IsAccountLocked = isBlocked;
       this.Data = JSON.stringify(data);

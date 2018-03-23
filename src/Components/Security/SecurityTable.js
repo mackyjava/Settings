@@ -93,7 +93,6 @@ class SecurityTable extends React.Component{
         UnlockAction(UserName){
           
           console.log(UserName);
-          this.props.Result.UnlockSuccess(false);
           fetch('/Security/UnlockingAccount.aspx/UnlockingUser', {
             method:'POST',
             headers: {
