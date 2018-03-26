@@ -11,15 +11,12 @@ let thStyle ={
 class SecurityTable extends React.Component{
     constructor(props){
         super(props);
-        
-        this.state = {
-          error: null,
-          isLoaded: false
-        };
-
-        console.log(this.props.Result);
-
+        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
     }
+    
+    forceUpdateHandler(){
+      this.forceUpdate();
+    };
     
     render(){
       if( this.props.Result.Data === ""){
@@ -91,8 +88,6 @@ class SecurityTable extends React.Component{
         }
         
         UnlockAction(UserName){
-          
-          console.log(UserName);
           fetch('/Security/UnlockingAccount.aspx/UnlockingUser', {
             method:'POST',
             headers: {
@@ -109,6 +104,8 @@ class SecurityTable extends React.Component{
             }
             else{
               this.props.Result.UnlockSuccess(false);
+              this.forceUpdateHandler();
+          
             }
           },
           (error)=>{

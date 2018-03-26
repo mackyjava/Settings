@@ -1,0 +1,12 @@
+.navbar-brand img{
+ width:100px;
+ height: 40px;
+}
+.title-nav{
+    text-align: center;
+}
+#navbar-settings{
+    width: 99.5%;
+    margin-top:-58px !important;
+    background-color: lightgray;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+
 import {
   Container,
   Row,
@@ -28,7 +28,7 @@ class UnlockingAcount extends React.Component {
     return (
       <Container fluid>
         <Row/>
-        <h4>Unlocking Acount</h4>
+        <h4>Unlock Acount</h4>
         <br/>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup row>
@@ -41,7 +41,7 @@ class UnlockingAcount extends React.Component {
                 placeholder="Please type a Username" onChange={this.handleChange} value={this.state.username}/>
             </Col>
             <Col sm={2}>
-              <Button type='submit' >Search User</Button>
+              <Button color="secondary" type='submit'>Search User</Button>
             </Col>
           </FormGroup>
         </Form>

@@ -10,6 +10,7 @@ import classnames from 'classnames';
 import ReactDOM from 'react-dom';
 import Fontawesome from 'react-fontawesome';
 import Home from './Home.js';
+import HeaderNav from '../Components/General/Header.js';
 
 const routes =[
 {
@@ -68,7 +69,8 @@ class PriceList extends React.Component {
     return (
     <Router>
       <Container fluid>
-      <Link to='/Home'><Button  onClick={()=>{this.toggle('0')}}><Fontawesome name='home'/> Home</Button></Link>
+      <HeaderNav/>
+      <Link to='/Home'><Button className='home' onClick={()=>{this.toggle('0')}}><Fontawesome name='cog'/> Home</Button></Link>
         <Row>
           <Col role="sidebar" tag="nav" sm={3} md={2} className="d-none d-sm-block bg-light sidebar">
             <Nav pills vertical>

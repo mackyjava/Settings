@@ -41,9 +41,13 @@ body {
   border-radius: 0;
 }
 .nav-link.active {
-  background-color: #96989a !important;
-  color: #FFFFFF !important;
+  background-color: transparent !important;
+  color: #A70702 !important;
 }
 .nav-link {
   color: #8b8c8e !important;
+}
+.nav-link:hover{
+  background-color: #96989a !important;
+  color:white !important;
 }

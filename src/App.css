@@ -1,14 +1,17 @@
 img{
-  width:250px;
+  width:130px;
   height:65px;
-  margin-top:76px;
+  margin:0 auto;
+  margin-top:11px;
 }
 .card{
   border: thin transparent !important;
+  color:#909090;
 }
 
 .card:hover{
   border: 2px solid #3B9AF8 !important;
+  color:#A70702;
 }
 .fa-usd{
   margin-left:20px;
@@ -18,7 +21,7 @@ img{
   margin-left: -10px;
 }
 
-.btn{
+.btn.home{
   width:auto;
   color: black !important;
   background-color:white !important;
@@ -27,5 +30,8 @@ img{
 }
 #p_wrap {
     white-space: pre-line;
-    margin-top:41px;
+    margin-top:10px;
   }
+a:hover{
+  text-decoration: none !important;
+}

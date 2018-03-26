@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Row, Col } from 'reactstrap';
+import { Card, Row, Col, Container } from 'reactstrap';
 import ButtonConfigurations from './butons.js';
 import Fontawesome from 'react-fontawesome';
 import ReactDOM from 'react-dom';
@@ -9,7 +9,9 @@ import SaM from '../../Img/Logo-SAM.png'
 import Catalogs from '../../Views/Catalogs.js';
 import {Link} from 'react-router-dom';
 import System from '../../Views/System.js';
-import Security from '../../Views/Security'
+import Security from '../../Views/Security';
+import HeaderNav from '../General/Header.js';
+
 class Elements extends React.Component {
   constructor(props) {
       super(props);
@@ -40,13 +42,14 @@ class Elements extends React.Component {
 
   render(){
     return (
-     <div>
+     <Container fluid>
+       <HeaderNav/>
       <Row style={{ marginTop: '5rem' }}>
       <Col lg="3"></Col>
         <Col lg="2">
         <Link to="/configurations/">
           <Card body onClick={() => { this.toggle('1'); }} className="text-center">
-          <Fontawesome name='book' style={{fontSize: "200px"}}/>
+          <Fontawesome name='book' style={{fontSize: "100px"}}/>
               <ButtonConfigurations name={"Configurations"}/>
           </Card>
           </Link>
@@ -54,7 +57,7 @@ class Elements extends React.Component {
         <Col lg="2">
         <Link to='/priceList/'>
           <Card body onClick={() => { this.toggle('2'); }} className="text-center">
-            <Fontawesome name='certificate' style={{fontSize: "200px"}}/>
+            <Fontawesome name='certificate' style={{fontSize: "100px"}}/>
               <ButtonConfigurations name={"Price List"}/>
           </Card>
           </Link>
@@ -62,7 +65,7 @@ class Elements extends React.Component {
         <Col lg="2">
         <Link to='/commissions/'>
           <Card body onClick={() => { this.toggle('3'); }} className="text-center">
-            <Fontawesome name='usd' style={{fontSize: "200px"}}/>
+            <Fontawesome name='usd' style={{fontSize: "100px"}}/>
               <ButtonConfigurations name={"Commissions"}/>
           </Card>
         </Link>
@@ -72,7 +75,7 @@ class Elements extends React.Component {
       <Col lg='4' md='3' sm='1' xs='1'></Col>
         <Col lg={2} md={2} sm={3} xs={3}>
         <Link to ='/system/'>
-          <Card body onClick={() => { this.toggle('4'); }} className="text-center" style={{height:'280px'}}>
+          <Card body onClick={() => { this.toggle('4'); }} className="text-center">
              <img src={SaM} alt="card cap"/>
              <p id="p_wrap"></p>
               <ButtonConfigurations name={"System"}/>
@@ -82,13 +85,13 @@ class Elements extends React.Component {
         <Col lg={2} md={2} sm={4} xs={3}>
         <Link to='/security/'>
           <Card body onClick={() => { this.toggle('5'); }} className="text-center">
-          <Fontawesome name='user-secret' style={{fontSize: "200px"}}/>
+          <Fontawesome name='user-secret' style={{fontSize: "100px"}}/>
               <ButtonConfigurations name={"Security"}/>
           </Card>
          </Link>
         </Col>
       </Row>
- </div>
+ </Container>
     );
   }
 }

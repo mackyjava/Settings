@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom';
 import Home from './Home.js';
 import Fontawesome from 'react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import HeaderNav from '../Components/General/Header.js';
 
 
 
@@ -53,7 +54,8 @@ class Commissions extends React.Component {
     return (
     <Router>
       <Container fluid>
-      <Link to ='/Home'><Button  onClick={()=>{this.toggle('0')}}><Fontawesome name='home'/> Home</Button></Link>
+      <HeaderNav/>
+      <Link to ='/Home'><Button className='home' onClick={()=>{this.toggle('0')}}><Fontawesome name='cog'/> Home</Button></Link>
         <Row>
           <Col tag="nav" sm={3} md={2} className="d-none d-sm-block bg-light sidebar">
             <Nav pills vertical>
