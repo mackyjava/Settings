@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import ReactDOM from 'react-dom';
 import Fontawesome from 'react-fontawesome';
 import Home from './Home.js';
+import HeaderNav from '../Components/General/Header.js';
 
 const routes =[
 {
@@ -48,12 +49,14 @@ class Security extends React.Component {
     return (
     <Router>
       <Container fluid>
-      <Button  onClick={()=>{this.toggle('0')}}><Fontawesome name='home' /> Home</Button>
+      <HeaderNav/>
+      <div style={{marginTop:'20px'}}>
+      <Button className='home' onClick={()=>{this.toggle('0')}}><Fontawesome name='cog' /> Home</Button>
         <Row>
           <Col role="sidebar" tag="nav" sm={3} md={2} className="d-none d-sm-block bg-light sidebar">
             <Nav pills vertical>
               <NavItem>
-                <NavLink tag={Link} to="/UnlockingAccount" className={classnames({ active: this.state.activeTab === '1' })} onClick={() => { this.toggle('1'); }}>Unlocking Account</NavLink>
+                <NavLink tag={Link} to="/UnlockingAccount" className={classnames({ active: this.state.activeTab === '1' })} onClick={() => { this.toggle('1'); }}> <Fontawesome name='unlock-alt'/>  Unlock Account</NavLink>
               </NavItem>
             </Nav>
             {routes.map((route, index) => (
@@ -76,6 +79,7 @@ class Security extends React.Component {
           ))}
           </Col>
         </Row>
+        </div>
       </Container>
        </Router>
     );
