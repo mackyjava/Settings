@@ -1,12 +1,13 @@
-.navbar-brand img{
- width:100px;
- height: 40px;
+img#sam-logo{
+ width:25%;
+ height: 25%;
 }
 .title-nav{
-    text-align: center;
+  margin-left:-20%;
 }
-#navbar-settings{
+#navbar-settings.navbar.navbar-light.bg-faded{
     width: 99.5%;
+    height:60px; 
     margin-top:-58px !important;
-    background-color: lightgray;
+    background-color: lightgray !important;
 }

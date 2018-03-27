@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert } from 'reactstrap';
 
-class AlertExample extends React.Component {
+class AlertAjax extends React.Component {
   constructor(props) {
     super(props);
 
@@ -17,12 +17,19 @@ class AlertExample extends React.Component {
   }
 
   render() {
-    return (
-      <Alert color="info" isOpen={this.state.visible} toggle={this.onDismiss}>
-        I am an alert and I can be dismissed!
-      </Alert>
-    );
+    
+    if(this.props.message !=='' && this.props.message !== undefined){
+      console.log(this.props.message)
+      return (
+        <Alert color={this.props.color} isOpen={this.state.visible} toggle={this.onDismiss}>
+          {this.props.message}
+        </Alert>
+       );
+    }
+    else {
+      return <div/>
+    }
   }
 }
 
-export default AlertExample;
+export default AlertAjax;

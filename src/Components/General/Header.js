@@ -8,7 +8,7 @@ class HeaderNav extends React.Component {
       return (
         <div>
           <Navbar color="faded" light id='navbar-settings'>
-            <NavbarBrand href="/" className="mr-auto"><img src={SaM}/></NavbarBrand>
+            <NavbarBrand href="/" className="mr-auto"><img src={SaM} alt='Sam Logo' id='sam-logo'/></NavbarBrand>
                 <h3 className="mr-auto , title-nav">System Settings</h3>
           </Navbar>
         </div>
