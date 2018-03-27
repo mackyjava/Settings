@@ -45,7 +45,7 @@ class Elements extends React.Component {
      <Container fluid>
        <HeaderNav/>
       <Row style={{ marginTop: '5rem' }}>
-      <Col lg="3"></Col>
+    {/* <Col lg="3"></Col>
         <Col lg="2">
         <Link to="/configurations/">
           <Card body onClick={() => { this.toggle('1'); }} className="text-center">
@@ -76,12 +76,12 @@ class Elements extends React.Component {
         <Col lg={2} md={2} sm={3} xs={3}>
         <Link to ='/system/'>
           <Card body onClick={() => { this.toggle('4'); }} className="text-center">
-             <img src={SaM} alt="card cap"/>
+             <img src={SaM} alt="card cap" id='sam-icon'/>
              <p id="p_wrap"></p>
               <ButtonConfigurations name={"System"}/>
           </Card>
           </Link>
-        </Col>
+    </Col>*/}
         <Col lg={2} md={2} sm={4} xs={3}>
         <Link to='/security/'>
           <Card body onClick={() => { this.toggle('5'); }} className="text-center">

@@ -12,13 +12,14 @@ import {
   Alert
 } from 'reactstrap';
 import SecurityTable from './SecurityTable.js';
+import AlertAjax from '../General/Alert.js';
 
 
 class UnlockingAcount extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { username: '', UnlockSuccess: this.UnlockSuccess, Data: '' };
+    this.state = { username: '', UnlockSuccess: this.UnlockSuccess, Data: '', message:'', color:'', messageChild:'', colorChild:''};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,17 +47,8 @@ class UnlockingAcount extends React.Component {
           </FormGroup>
         </Form>
         <br/>
-        <fieldset
-          style={{
-          border: "solid grey 2px",
-          height: "200px"
-        }}>
-          <legend style={{
-            width: "10%"
-          }}>User Status</legend>
+              <AlertAjax message={this.state.message} color={this.state.color}/>
               <SecurityTable Result = {this.state}/>
-        </fieldset>
-
       </Container>
     );
   }
@@ -73,6 +65,7 @@ class UnlockingAcount extends React.Component {
 
     fetch("/Security/UnlockingAccount.aspx/SearchUserByNameUser", {
       method: "post",
+      credentials: 'same-origin',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -82,15 +75,21 @@ class UnlockingAcount extends React.Component {
       .then(res => res.json())
       .then((response) => {
         if(response.d.HasError){
-          return;
+         this.setState({
+           Data: '',
+           message:response.d.Message,
+           color: 'danger'
+         })
         }
-        this.setState({isLoaded: true, Data: response.d.Data});
+        this.setState({isLoaded: true, Data: response.d.Data,messageChild:'',colorChild:''});
       }, (error) => {
         this.setState({isLoaded: true, error});
       })
     
     this.setState(prevState => ({
-      username: ''
+      username: '',
+      message:'',
+      color: ''
     }));    
   }
 
@@ -98,6 +97,8 @@ class UnlockingAcount extends React.Component {
       let data = JSON.parse(this.Data);
       data.IsAccountLocked = isBlocked;
       this.Data = JSON.stringify(data);
+      this.messageChild = 'The account was successfully unlocked';
+      this.colorChild ="info";
     }
 
 }
