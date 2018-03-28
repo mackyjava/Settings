@@ -5,9 +5,7 @@ import '../Css/sidebar.css';
 import BenefitsForm from '../Components/Catalogs/Benefits';
 import ExchangeRateForm from '../Components/Catalogs/ExchangeRate';
 import classnames from 'classnames';
-import ReactDOM from 'react-dom';
 import Fontawesome from 'react-fontawesome';
-import Home from './Home.js';
 import HeaderNav from '../Components/General/Header.js';
 
 
@@ -46,17 +44,15 @@ class PriceList extends React.Component {
         activeTab: tab
       });
     }
-    if(tab == 0){
-      ReactDOM.render(<Home />, document.getElementById('root'));
-    }
   }
 
   render() {
     return (
-    <Router>
+    
       <Container fluid>
       <HeaderNav/>
-      <Link to='/Home'><Button className='home' onClick={()=>{this.toggle('0')}}><Fontawesome name='cog' /> Home</Button></Link>
+      <Link to='/'><Button className='home'><Fontawesome name='cog' /> Home</Button></Link>
+      <Router>
         <Row>
           <Col role="sidebar" tag="nav" sm={3} md={2} className="d-none d-sm-block bg-light sidebar">
             <Nav pills vertical>
@@ -85,8 +81,9 @@ class PriceList extends React.Component {
           ))}
           </Col>
         </Row>
+        </Router>
       </Container>
-       </Router>
+       
     );
   }
 }

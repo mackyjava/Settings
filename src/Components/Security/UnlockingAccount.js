@@ -8,8 +8,7 @@ import {
   Input,
   Label,
   FormGroup,
-  Button,
-  Alert
+  Button
 } from 'reactstrap';
 import SecurityTable from './SecurityTable.js';
 import AlertAjax from '../General/Alert.js';

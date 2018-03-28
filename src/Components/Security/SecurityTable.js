@@ -1,5 +1,5 @@
 import React from 'react';
-import {Table, Col, Row, Button} from 'reactstrap';
+import {Col, Row, Button} from 'reactstrap';
 import Fontawesome from 'react-fontawesome';
 import AlertAjax from '../General/Alert.js'
 
@@ -41,8 +41,8 @@ class SecurityTable extends React.Component{
                  <Row>
                     <Col sm={8}>
                       <div  className={"text-left"}>
-                        <label  scope="row"><b>User Name:</b></label>
-                        <p  scope="row">{propiedades.username}</p>
+                        <label ><b>User Name:</b></label>
+                        <p >{propiedades.username}</p>
                         <label ><b>Name:</b></label>
                         <p>{propiedades.name}</p>
                         <label ><b>Locked:</b></label>
@@ -61,8 +61,8 @@ class SecurityTable extends React.Component{
                 <Row>
                   <Col sm={8}>
                     <div  className={"text-left"}>
-                      <label scope="row"><b>User Name:</b></label>
-                      <p  scope="row">{propiedades.username}</p>
+                      <label ><b>User Name:</b></label>
+                      <p >{propiedades.username}</p>
                       <label><b>Name:</b></label>
                       <p>{propiedades.name}</p>
                       <label><b>Locked:</b></label>
