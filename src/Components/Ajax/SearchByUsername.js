@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 class SearchByUsername extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class SearchByUsername extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, result } = this.state;
+    const { error, isLoaded} = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
