@@ -6,6 +6,7 @@ import ClearCacheForm from '../Components/System/ClearCache';
 import classnames from 'classnames';
 import Fontawesome from 'react-fontawesome';
 import HeaderNav from '../Components/General/Header.js';
+import store from '../libs/store';
 
 
 const routes =[
@@ -79,6 +80,7 @@ class System extends React.Component {
        
     );
   }
+  
 }
 
 export default System;
