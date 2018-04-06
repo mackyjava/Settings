@@ -1,5 +1,5 @@
-import { locationChange } from "./actions/actionsRouter";
-import store, {history} from '../index';
+import { locationChange } from "../actions/actionsRouter";
+import store, {history} from '../store';
 
 export function startListener(history, store){
         store.dispatch(locationChange({

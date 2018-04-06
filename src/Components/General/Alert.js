@@ -18,11 +18,11 @@ class AlertAjax extends React.Component {
 
   render() {
     
-    if(this.props.message !=='' && this.props.message !== undefined){
+    if(Object.keys(this.props.result).length !== 0 && this.props.result !== undefined){
       console.log(this.props.message)
       return (
-        <Alert color={this.props.color} isOpen={this.state.visible} toggle={this.onDismiss}>
-          {this.props.message}
+        <Alert color={'danger'} isOpen={this.state.visible} toggle={this.onDismiss}>
+          {this.props.result.data.Message}
         </Alert>
        );
     }

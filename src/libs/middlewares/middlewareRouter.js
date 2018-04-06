@@ -1,4 +1,4 @@
-import { PUSH, REPLACE, GO, GO_BACK, GO_FORWARD } from "../libs/constants/constantsRouter";
+import { PUSH, REPLACE, GO, GO_BACK, GO_FORWARD } from "../constants/constantsRouter";
 
 export const routerMiddleware =(history) =>()=> (next) =>
 (action)=>{

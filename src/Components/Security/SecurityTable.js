@@ -1,7 +1,9 @@
 import React from 'react';
 import {Col, Row, Button} from 'reactstrap';
 import Fontawesome from 'react-fontawesome';
-import AlertAjax from '../General/Alert.js'
+import {connect} from 'react-redux';
+import AlertAjax from '../General/Alert.js';
+import {fetchRequestUnlock} from '../../libs/actions/actionUnlock';
 
 
 class SecurityTable extends React.Component{
@@ -15,29 +17,31 @@ class SecurityTable extends React.Component{
       this.forceUpdate();
       
     };
-   
+    
     render(){
-      
-      if( this.props.Result.Data === "" ||this.props.Result.Data === null || this.props.Result.Data ===undefined){
+      const {dispatch} = this.props;
+     console.log(this.props);
+     
+     if( Object.keys(this.props.result).length === 0|| this.props.result === undefined || this.props.result === null){
         return <div></div>
       }
-      console.log(this.props);
-      let Data = JSON.parse(this.props.Result.Data);
-      let messageAlert =this.props.Result.messageChild;
-      let colorAlert =this.props.Result.colorChild;
+     if(this.props.result.data.HasError){
+        return <div/>
+      }
+    
+      let Data = JSON.parse(this.props.result.data.Data);
+     
 
       let propiedades ={
         username:Data.UserName,
         name: Data.DisplayName,
         lock: Data.IsAccountLocked ? "Yes": "No",
         iconname: Data.IsAccountLocked ? "lock": "unlock",
-        message:messageAlert,
-        color:colorAlert
       }
       if(!Data.IsAccountLocked){
             return(
               <div>
-                 <Row><AlertAjax message={propiedades.message} color={propiedades.color}/></Row>
+                 {/* <Row><AlertAjax message={propiedades.message} color={propiedades.color}/></Row> */}
                  <Row>
                     <Col sm={8}>
                       <div  className={"text-left"}>
@@ -78,32 +82,9 @@ class SecurityTable extends React.Component{
         
         }
         
-        UnlockAction(UserName){
-          fetch('/Security/UnlockingAccount.aspx/UnlockingUser', {
-            method:'POST',
-            credentials: 'same-origin',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },//make sure to serialize your JSON body
-            body: JSON.stringify({ username: UserName })
-            })
-            .then(res => res.json())
-            .then((result)=>{
-               this.setState({isLoaded : true })
-              if(result.d.HasError){
-                return;
-              }
-              else{
-                this.props.Result.UnlockSuccess(false);
-                this.forceUpdateHandler();
-              }
-            },
-            (error)=>{
-              this.setState({
-              })
-            })
+        UnlockAction(username){
+         this.props.dispatch(fetchRequestUnlock(username))
       }
       
 }
-export default SecurityTable
+export default connect()(SecurityTable)
