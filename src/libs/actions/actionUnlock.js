@@ -1,4 +1,4 @@
-import {REQUEST_SEARCH, RECEIVE_RESPONSE, REQUEST_UNLOCK, DISMISS_ALERT} from '../constants/constantUnlock'; 
+import {REQUEST_SEARCH, RECEIVE_RESPONSE, REQUEST_UNLOCK, DISMISS_ALERT, EMPTY_DATA_SEARCH} from '../constants/constantUnlock'; 
 
 export const requestSearch = (username)=>({
     type: REQUEST_SEARCH,
@@ -17,7 +17,14 @@ export const requestUnlock =(username)=>({
   type:REQUEST_UNLOCK,
   username
 })
-
+export const emptyData =()=>({
+  type:EMPTY_DATA_SEARCH,
+  username: "",
+  data:"",
+  message: null,
+  hasError:'',
+  isOpen:"",
+})
 
 export const fetchSearch = (username, messageUnlock, error) => dispatch => {
     dispatch(requestSearch(username))
@@ -73,7 +80,7 @@ export const receiveResponseUnlock= (username, json)=> dispatch =>{
     dispatch(fetchSearch(username,messageUnlock,error))
   }
   else{
-    error = true;
+    error =false;
     messageUnlock= 'Success'
     dispatch(fetchSearch(username,messageUnlock, error))
   }

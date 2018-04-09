@@ -59,7 +59,7 @@ class SecurityTable extends React.Component{
                       <label><b>Locked:</b></label>
                       <p>{propiedades.lock}</p>
                       <label><b>Status:</b></label>
-                      <p><Button style={{marginTop:"-12px",border:"none"}} onClick={()=> {this.UnlockAction(propiedades.username)}}><Fontawesome name={propiedades.iconname}size='2x'/></Button></p>
+                      <p><Button style={{border:"none", backgroundColor:"white", color:"black"}} onClick={()=> {this.UnlockAction(propiedades.username)}}><Fontawesome name={propiedades.iconname}size='2x'/></Button></p>
                     </div>
                   </Col>
                 </Row>

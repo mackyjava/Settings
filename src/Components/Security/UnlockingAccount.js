@@ -13,7 +13,7 @@ import {
 import SecurityTable from './SecurityTable.js';
 import AlertAjax from '../General/Alert.js';
 import {connect} from 'react-redux';
-import {fetchRequestSearch} from '../../libs/actions/actionUnlock';
+import {fetchRequestSearch,emptyData} from '../../libs/actions/actionUnlock';
 import store from '../../libs/store';
 
 
@@ -23,6 +23,9 @@ class UnlockingAcount extends React.Component {
   
    componentDidMount(){
      const {dispatch, data} = this.props;
+     if(store.getState().router !== '/Security/'){
+      dispatch( emptyData())
+    }
      
    }
    componentWillReceiveProps(nextProps){

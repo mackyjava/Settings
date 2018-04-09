@@ -40,7 +40,7 @@ onDismiss=()=> {
 }
 const mapStateToProps = state => {
   const {message,visible}= state
-  return message, visible
+  return {message, visible}
 }
 
 export default connect(mapStateToProps)(AlertAjax);
