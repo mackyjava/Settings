@@ -7,29 +7,17 @@ import {fetchRequestUnlock} from '../../libs/actions/actionUnlock';
 
 
 class SecurityTable extends React.Component{
-    constructor(props){
-        super(props);
-        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
-       
-    }
-    
-    forceUpdateHandler(){
-      this.forceUpdate();
-      
-    };
-    
     render(){
       const {dispatch} = this.props;
-     console.log(this.props);
-     
+
      if( Object.keys(this.props.result).length === 0|| this.props.result === undefined || this.props.result === null){
         return <div></div>
       }
-     if(this.props.result.data.HasError){
+     if(this.props.result.data.HasError || this.props.result.data ===''){
         return <div/>
       }
     
-      let Data = JSON.parse(this.props.result.data.Data);
+      let Data = JSON.parse(this.props.result.data);
      
 
       let propiedades ={
@@ -41,7 +29,6 @@ class SecurityTable extends React.Component{
       if(!Data.IsAccountLocked){
             return(
               <div>
-                 {/* <Row><AlertAjax message={propiedades.message} color={propiedades.color}/></Row> */}
                  <Row>
                     <Col sm={8}>
                       <div  className={"text-left"}>

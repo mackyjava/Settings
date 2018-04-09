@@ -69,7 +69,7 @@ class UnlockingAcount extends React.Component {
           </FormGroup>
         </Form>
         <br/>
-              <AlertAjax result={this.props.unlockAcount}/>
+              <AlertAjax result={this.props.unlockAcount} />
               <SecurityTable result={this.props.unlockAcount}/>
       </Container>
     );

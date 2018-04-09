@@ -1,4 +1,4 @@
-import {REQUEST_SEARCH, RECEIVE_RESPONSE, REQUEST_UNLOCK} from '../constants/constantUnlock'; 
+import {REQUEST_SEARCH, RECEIVE_RESPONSE, REQUEST_UNLOCK, DISMISS_ALERT} from '../constants/constantUnlock'; 
 
 export const requestSearch = (username)=>({
     type: REQUEST_SEARCH,
@@ -6,10 +6,12 @@ export const requestSearch = (username)=>({
 })
 export const receiveSearch = (username, json)=>(
   {
-  
     type: RECEIVE_RESPONSE,
     username,
-    data: json.d,
+    data: json.d.Data,
+    message: json.d.Message,
+    hasError: json.d.HasError,
+    isOpen: true,
 })
 export const requestUnlock =(username)=>({
   type:REQUEST_UNLOCK,
@@ -17,7 +19,7 @@ export const requestUnlock =(username)=>({
 })
 
 
-export const fetchSearch = username => dispatch => {
+export const fetchSearch = (username, messageUnlock, error) => dispatch => {
     dispatch(requestSearch(username))
       return  fetch('/Security/UnlockingAccount.aspx/SearchUserByNameUser', {
         method: "post",
@@ -29,8 +31,17 @@ export const fetchSearch = username => dispatch => {
           body: JSON.stringify({username:username})
         })
         .then(res => res.json())
-        .then((json) =>{ dispatch(receiveSearch(username,json)),console.log(json)})
+        .then((json) =>{
+          if((messageUnlock !== undefined && messageUnlock !== '')&&(error!== undefined && error !== '')){ 
+             json.d.Message = messageUnlock; 
+             json.d.HasError = error;  
+             dispatch(receiveSearch(username,json))
+          }
+          dispatch(receiveSearch(username,json))
+          
+       })
 }
+
 export const fetchRequestSearch = username=>(dispatch, getState) => {
  return  dispatch(fetchSearch(username))
 }
@@ -50,16 +61,28 @@ export const fetchUnlock = username => dispatch =>{
         body: JSON.stringify({ username:username })
         })
         .then(res => res.json())
-        .then((json)=>{dispatch(receiveResponseUnlock(username, json)),console.log(json)})
+        .then((json)=>{dispatch(receiveResponseUnlock(username, json))})
 }
 
 export const receiveResponseUnlock= (username, json)=> dispatch =>{
-   console.log(username, json.d.HasError);
-   if (json.d.HasError){
-     return;
-   }
-   else
-   dispatch(fetchRequestSearch(username))
+  let messageUnlock
+  let error
+  if(json.d.HasError){
+    error = true;
+    messageUnlock= 'An error has occurred'
+    dispatch(fetchSearch(username,messageUnlock,error))
+  }
+  else{
+    error = true;
+    messageUnlock= 'Success'
+    dispatch(fetchSearch(username,messageUnlock, error))
+  }
+  
 }
+export const dismissAlert = (value)=>({
+  type:DISMISS_ALERT,
+  isOpen:value,
+
+})
 
 

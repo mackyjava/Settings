@@ -20,7 +20,7 @@ const middleware = routerMiddleware(history)
 
 const store = createStore(rootReducer,{},applyMiddleware(thunk,...middleware))
 
-startListener(history, store);console.log(store.getState());
+startListener(history, store);
 
 let currentLocation = store.getState().router.pathname
 
