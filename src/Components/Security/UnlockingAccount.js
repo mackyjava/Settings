@@ -12,33 +12,56 @@ import {
 } from 'reactstrap';
 import SecurityTable from './SecurityTable.js';
 import AlertAjax from '../General/Alert.js';
+import {connect} from 'react-redux';
+import {fetchRequestSearch} from '../../libs/actions/actionUnlock';
+import store from '../../libs/store';
+
+
 
 
 class UnlockingAcount extends React.Component {
-  constructor(props) {
-    super(props);
+  
+   componentDidMount(){
+     const {dispatch, data} = this.props;
+     
+   }
+   componentWillReceiveProps(nextProps){
+     if(nextProps.username !== this.props.username){
+       const{dispatch, username} = nextProps;
+       
+     }
 
-    this.state = { username: '', UnlockSuccess: this.UnlockSuccess, Data: '', message:'', color:'', messageChild:'', colorChild:''};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+   }
+   handleSubmit= username =>{
+    const {dispatch, data} = this.props;
+      if (!username) {
+           return;
+         }
+    this.props.dispatch(fetchRequestSearch(username))                                                           
   }
 
   render() {
+    const {data, username}= this.props;
+   let input
+   
     return (
       <Container fluid>
         <Row/>
         <h4>Unlock Acount</h4>
         <br/>
-        <Form onSubmit={this.handleSubmit}>
+        <Form  onSubmit={e => {
+          e.preventDefault();
+          this.handleSubmit(input.value);
+          input.value = '';
+        }}>
           <FormGroup row>
-            <Label for="exampleEmail" sm={1}>User:</Label>
+            <Label for="UserName" sm={1}>User:</Label>
             <Col sm={2}>
-              <Input
+              <input
                 type="text"
                 name="userName"
                 id="UserName"
-                placeholder="Please type a Username" onChange={this.handleChange} value={this.state.username}/>
+                placeholder="Please type a Username" ref={node => (input = node)} className={'form-group, form-control'}/>
             </Col>
             <Col sm={2}>
               <Button color="secondary" type='submit'>Search User</Button>
@@ -46,59 +69,19 @@ class UnlockingAcount extends React.Component {
           </FormGroup>
         </Form>
         <br/>
-              <AlertAjax message={this.state.message} color={this.state.color}/>
-              <SecurityTable Result = {this.state}/>
+              <AlertAjax result={this.props.unlockAcount} />
+              <SecurityTable result={this.props.unlockAcount}/>
       </Container>
     );
   }
 
-  handleChange(e) {
-    this.setState({ username: e.target.value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    if (!this.state.username.length) {
-      return;
-    }
-
-    fetch("/Security/UnlockingAccount.aspx/SearchUserByNameUser", {
-      method: "post",
-      credentials: 'same-origin',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }, //make sure to serialize your JSON body
-        body: JSON.stringify({username: this.state.username})
-      })
-      .then(res => res.json())
-      .then((response) => {
-        if(response.d.HasError){
-         this.setState({
-           Data: '',
-           message:response.d.Message,
-           color: 'danger'
-         })
-        }
-        this.setState({isLoaded: true, Data: response.d.Data,messageChild:'',colorChild:''});
-      }, (error) => {
-        this.setState({isLoaded: true, error});
-      })
-    
-    this.setState(prevState => ({
-      username: '',
-      message:'',
-      color: ''
-    }));    
-  }
-
-  UnlockSuccess(isBlocked){
-      let data = JSON.parse(this.Data);
-      data.IsAccountLocked = isBlocked;
-      this.Data = JSON.stringify(data);
-      this.messageChild = 'The account was successfully unlocked';
-      this.colorChild ="info";
-    }
-
 }
-export default UnlockingAcount
+const mapStateToprops= state =>{
+  const data= state
+  
+  return data;
+ 
+}
+
+
+export default connect(mapStateToprops)(UnlockingAcount)

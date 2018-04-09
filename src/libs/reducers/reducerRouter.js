@@ -1,4 +1,4 @@
-import { LOCATION_CHANGE } from "../libs/constants/constantsRouter";
+import { LOCATION_CHANGE } from "../constants/constantsRouter";
 
 const initialState ={
     pathname:'/',

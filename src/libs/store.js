@@ -1,9 +1,11 @@
 import { combineReducers, applyMiddleware, createStore } from 'redux'
 import { createBrowserHistory } from 'history'
-import { routerReducer } from './reducer'
-import { routerMiddleware } from './middleware'
-import { startListener } from './listener'
+import { routerReducer } from './reducers/reducerRouter'
+import { routerMiddleware } from './middlewares/middlewareRouter'
+import { startListener } from './listeners/listenerRouter'
 import {composeWithDevTools} from 'redux-devtools-extension';
+import {resultSearchUnlock, resultRequestUnlock} from './reducers/reducerUnlock';
+import thunk from 'redux-thunk';
 
 export const history = createBrowserHistory()
 
@@ -11,13 +13,14 @@ export const history = createBrowserHistory()
 
 const rootReducer = combineReducers({
   router:routerReducer,
+  unlockAcount:resultSearchUnlock,
 })
 
 const middleware = routerMiddleware(history)
 
-const store = createStore(rootReducer,{},applyMiddleware(middleware))
+const store = createStore(rootReducer,{},applyMiddleware(thunk,...middleware))
 
-startListener(history, store);console.log(store);
+startListener(history, store);
 
 let currentLocation = store.getState().router.pathname
 
