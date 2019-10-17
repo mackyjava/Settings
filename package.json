@@ -3,22 +3,22 @@
   "version": "0.1.0",
   "private": false,
   "dependencies": {
-    "ajv": "^6.0.0",
-    "ajv-keywords": "^3.1.0",
-    "bootstrap": "^4.0.0",
-    "history": "^4.7.2",
-    "jquery": "^3.3.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "ajv": "^6.10.2",
+    "ajv-keywords": "^3.4.1",
+    "bootstrap": "^4.3.1",
+    "history": "^4.9.0",
+    "jquery": "^3.4.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-fontawesome": "^1.6.1",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.2.2",
+    "react-redux": "^5.1.1",
+    "react-router-dom": "^4.3.1",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "1.1.1",
-    "reactstrap": "^5.0.0-beta.2",
+    "reactstrap": "^5.0.0",
     "redux": "^3.7.2",
-    "redux-devtools-extension": "^2.13.2",
-    "redux-thunk": "^2.2.0"
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -27,6 +27,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "redux-devtools": "^3.4.1"
+    "redux-devtools": "^3.5.0"
   }
 }
